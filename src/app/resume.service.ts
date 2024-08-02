@@ -15,7 +15,7 @@ export class ResumeService {
     return this.http.post(`${this.apiUrl}/login`, { username, password });
   }
 
-  logout(): void {
+  logOut(): void {
     localStorage.removeItem('token');
   }
 

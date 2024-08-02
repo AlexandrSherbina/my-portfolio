@@ -3,9 +3,7 @@ import { Router } from '@angular/router';
 import { ResumeService } from '../resume.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { subscribe } from 'diagnostics_channel';
-import { response } from 'express';
-import { error } from 'console';
+
 
 @Component({
   selector: 'app-login',
@@ -17,7 +15,7 @@ import { error } from 'console';
       <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
       <button type="submit">LogIn</button>
     </form>
-    <button (click)="logOut()">LogOut</button>
+    <button (click)="logOutForLogin()">LogOut</button>
   `
 })
 export class LoginComponent {
@@ -39,8 +37,8 @@ export class LoginComponent {
     );
   }
 
-  logOut() {
-    this.resumeService.logout();
-    this.router.navigate(['/app-login']);
+  logOutForLogin() {
+    this.resumeService.logOut();
+    this.router.navigate(['/app-home']);
   }
 }
