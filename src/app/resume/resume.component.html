@@ -1,0 +1,14 @@
+<div class="resume-container">
+    <h2>Мое резюме</h2>
+
+    <div *ngIf="!isEditing" [innerHTML]="resume | safeHtml"></div>
+
+    <textarea *ngIf="isEditing" [(ngModel)]="resume" rows="20" cols="80"></textarea>
+
+    <div class="actions">
+        <button *ngIf="isAdmin && !isEditing" (click)="toggleEdit()">Редактировать</button>
+        <button *ngIf="isEditing" (click)="saveResume()">Сохранить</button>
+        <button *ngIf="isEditing" (click)="toggleEdit()">Отмена</button>
+        <button (click)="downloadResume()">Скачать резюме</button>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+@use '../../styles.scss';
+
+@mixin flexMenu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+ul.menu-list {
+    position: relative;
+    @include flexMenu;
+    padding: 1rem 0.5rem;
+    list-style-type:none;
+}
+
+li.menu-list-item {
+    &:not(:nth-last-child(-n + 1))::after {
+        content: '|' ;
+        position: relative;
+        right: -10px;
+        margin-right: 0.5rem;
+        color: styles.$dark-gray;
+        font-weight: 600;
+    }
+}
+
+@mixin btnPrimaryFonts {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+@mixin btn-primary-colors {
+    background: styles.$white linear-gradient(to bottom, styles.$white 5%, #f6f6f6 100%);
+    color: styles.$dark-gray;
+}
+
+@mixin btnPrimaryBorders {
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    outline: 0;
+}
+
+@mixin btn-shadows($box-sh-cr, $text-sh-cr) {
+    box-shadow: inset 0 1px 0 0 $box-sh-cr;
+    text-shadow: 0 1px 0 $text-sh-cr;
+}
+
+
+.button-nav {
+    display: inline-block;
+    position: relative;
+    padding: 6px 24px;
+    @include btnPrimaryFonts;
+    @include btn-primary-colors;
+    @include btnPrimaryBorders;
+    @include btn-shadows(styles.$white, styles.$white);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    &:not(.active-button):hover {
+        background: linear-gradient(to top, #dcdcdc 20%, styles.$white 100%);
+        color: saturate( black, 15%);
+    }
+}
+
+
+
+.active-button {
+    color: styles.$white;
+    background: #bddbfa linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+    border: 1px solid #84bbf3;    
+    @include btn-shadows(#dcecfb, #528ecc)
+}
