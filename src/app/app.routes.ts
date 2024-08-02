@@ -7,15 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { ResumeComponent } from './resume/resume.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/app-home', pathMatch: 'full' },
     { path: 'app-about', component: AboutComponent },
     { path: 'app-home', component: HomeComponent },
-    { path: 'app-resume', component: ResumeComponent },
+    { path: 'app-resume', component: ResumeComponent, canActivate: [AuthGuard] },
     { path: 'app-all-portfolio', component: AllPortfolioComponent },
     { path: 'app-contacts', component: ContactsComponent },
-    // { path: 'app-authorization', component: AuthorizationComponent },
     { path: 'app-login', component: LoginComponent },
     { path: '**', component: PageNotFoundComponent }
 ];

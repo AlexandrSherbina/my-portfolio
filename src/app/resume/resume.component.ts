@@ -1,6 +1,5 @@
 // resume.component.ts
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
 import { ResumeService } from '../resume.service';
 import { SafeHtmlPipe } from '../safe-html.pipe';
 import { FormsModule } from '@angular/forms';

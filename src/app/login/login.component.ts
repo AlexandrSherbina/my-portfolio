@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ResumeService } from '../resume.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -22,10 +23,10 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private resumeService: ResumeService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   onSubmit() {
-    this.resumeService.login(this.username, this.password).subscribe(
+    this.authService.login(this.username, this.password).subscribe(
       response => {
         localStorage.setItem('token', response.token);
         this.router.navigate(['/app-resume']);
@@ -38,7 +39,7 @@ export class LoginComponent {
   }
 
   logOutForLogin() {
-    this.resumeService.logOut();
+    this.authService.logOut();
     this.router.navigate(['/app-home']);
   }
 }
