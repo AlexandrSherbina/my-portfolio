@@ -15,6 +15,10 @@ export class ResumeService {
     return this.http.post(`${this.apiUrl}/login`, { username, password });
   }
 
+  logout(): void {
+    localStorage.removeItem('token');
+  }
+
   getResume(): Observable<string> {
     return this.http.get(`${this.apiUrl}/resume`, {
       headers: this.getAuthHeaders(),

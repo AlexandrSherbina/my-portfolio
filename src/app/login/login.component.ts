@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { ResumeService } from '../resume.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { subscribe } from 'diagnostics_channel';
+import { response } from 'express';
+import { error } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +15,9 @@ import { FormsModule } from '@angular/forms';
     <form (ngSubmit)="onSubmit()">
       <input [(ngModel)]="username" name="username" placeholder="Username" required>
       <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
-      <button type="submit">Login</button>
+      <button type="submit">LogIn</button>
     </form>
+    <button (click)="logOut()">LogOut</button>
   `
 })
 export class LoginComponent {
@@ -33,5 +37,10 @@ export class LoginComponent {
         // Здесь можно добавить обработку ошибки, например, показать сообщение пользователю
       }
     );
+  }
+
+  logOut() {
+    this.resumeService.logout();
+    this.router.navigate(['/app-login']);
   }
 }
