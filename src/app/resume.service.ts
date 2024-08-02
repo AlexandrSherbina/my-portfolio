@@ -20,7 +20,6 @@ export class ResumeService {
       headers: this.getAuthHeaders(),
       responseType: 'text'
     });
-
   }
 
   updateResume(resume: string): Observable<any> {
