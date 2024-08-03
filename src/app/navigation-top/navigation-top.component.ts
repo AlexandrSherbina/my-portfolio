@@ -15,7 +15,6 @@ export class NavigationTopComponent {
     { id: 3, nameLink: 'Resume', routerLink: 'app-resume' },
     { id: 4, nameLink: 'All portfolio', routerLink: 'app-all-portfolio' },
     { id: 5, nameLink: 'Contacts', routerLink: 'app-contacts' },
-    // { id: 6, nameLink: 'Authorization', routerLink: 'app-authorization' },
     { id: 6, nameLink: 'Authorization', routerLink: 'app-login' },
   ]
 }

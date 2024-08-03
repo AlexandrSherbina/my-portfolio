@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('token');
+    return localStorage !== undefined ? localStorage.getItem('token') : null;
   }
 
   isLoggedIn() {

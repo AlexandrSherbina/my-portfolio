@@ -1,0 +1,47 @@
+$font: "Roboto";
+$font-size: 1.5rem;
+$color-user-on: #50cd54;
+
+@mixin flexHorizon() {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: 0.5rem;
+        flex-wrap: nowrap;
+}
+@mixin flexColumn() {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+.user-is-login {
+    @include flexHorizon;
+    font-size: $font-size;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.user-login-on {
+    color:  $color-user-on;
+}
+
+.user-login-off {
+    color: #6956d1;
+}
+
+.user-field {
+    @include flexColumn;
+}
+
+.flex-horizon {
+    @include flexHorizon;
+}
+
+
+.indicate {  
+    $size: 0.5rem;
+    background-color: $color-user-on;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    border: 1px dashed gray;
+}

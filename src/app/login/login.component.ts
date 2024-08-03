@@ -4,26 +4,40 @@ import { ResumeService } from '../resume.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { AuthGuard } from '../auth.guard';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  styleUrl: 'login.component.scss',
   template: `
-    <form (ngSubmit)="onSubmit()">      
-      <input [(ngModel)]="username" name="username" placeholder="Username" required>
-      <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
-      <button type="submit">LogIn</button>
+<div class="user-is-login" >User: 
+       <div class="flex-horizon" *ngIf="isUser(); else offUser">
+         <span class="user-login-on" >Is online</span>
+         <button (click)="logOutForLogin()">LogOut </button> 
+       </div>
+        <ng-template  #offUser>
+           <span class="user-login-off">Offline.</span>
+        </ng-template>
+  </div>
+    <form *ngIf="!isUser()" (ngSubmit)="onSubmit()">     
+        <div class="user-field">
+            <label for="username">Username: </label>
+            <input [(ngModel)]="username" name="username" placeholder="Username" required>
+          </div>
+          <div class="user-field">
+            <label for="password">Password:</label>
+            <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
+          </div>
+          <button type="submit">LogIn</button>
     </form>
-    <button (click)="logOutForLogin()">LogOut</button>
   `
 })
 export class LoginComponent {
   username: string = '';
   password: string = '';
-  user: boolean = false;
+
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -43,5 +57,9 @@ export class LoginComponent {
   logOutForLogin() {
     this.authService.logOut();
     this.router.navigate(['/app-home']);
+  }
+
+  isUser() {
+    return this.authService.isLoggedIn() ? true : false;
   }
 }
