@@ -10,15 +10,6 @@ export class ResumeService {
 
   constructor(private http: HttpClient) { }
 
-
-  // login(username: string, password: string): Observable<any> {
-  //   return this.http.post(`${this.apiUrl}/login`, { username, password });
-  // }
-
-  // logOut(): void {
-  //   localStorage.removeItem('token');
-  // }
-
   getResume(): Observable<string> {
     return this.http.get(`${this.apiUrl}/resume`, {
       headers: this.getAuthHeaders(),

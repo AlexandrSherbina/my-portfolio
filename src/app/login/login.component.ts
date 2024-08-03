@@ -4,6 +4,7 @@ import { ResumeService } from '../resume.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { AuthGuard } from '../auth.guard';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { AuthService } from '../auth.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">      
       <input [(ngModel)]="username" name="username" placeholder="Username" required>
       <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
       <button type="submit">LogIn</button>
@@ -22,6 +23,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  user: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
