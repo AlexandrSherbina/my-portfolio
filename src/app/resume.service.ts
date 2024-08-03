@@ -74,7 +74,6 @@ export class ResumeService {
   }
 
   private getAuthHeaders(newToken: string | null | undefined): HttpHeaders {
-    // const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
     const token = newToken ? newToken : this.getToken();
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }

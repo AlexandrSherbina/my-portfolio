@@ -30,12 +30,6 @@ export class ResumeComponent implements OnInit {
     this.resumeService.getResume(this.resumeService.getToken()).subscribe(
       data => this.resume = data,
       error => this.handleTokenError(error)
-      //    {
-      //   console.error('Ошибка при загрузке резюме', error);
-      //   if (error.status === 401) {
-      //     this.router.navigate(['/app-login']);
-      //   }
-      // }
     );
   }
 
