@@ -27,14 +27,15 @@ export class ResumeComponent implements OnInit {
   }
 
   loadResume() {
-    this.resumeService.getResume().subscribe(
+    this.resumeService.getResume(this.resumeService.getToken()).subscribe(
       data => this.resume = data,
-      error => {
-        console.error('Ошибка при загрузке резюме', error);
-        if (error.status === 401) {
-          this.router.navigate(['/app-login']);
-        }
-      }
+      error => this.handleTokenError(error)
+      //    {
+      //   console.error('Ошибка при загрузке резюме', error);
+      //   if (error.status === 401) {
+      //     this.router.navigate(['/app-login']);
+      //   }
+      // }
     );
   }
 
@@ -59,6 +60,23 @@ export class ResumeComponent implements OnInit {
       } catch (error) {
         console.error('Ошибка при декодировании токена:', error);
       }
+    }
+  }
+
+  handleTokenError(error: any) {
+    if (error.status === 401) {
+      const refreshToken = this.resumeService.getRefreshToken();
+      this.resumeService.refreshToken(refreshToken)
+        .subscribe(newToken => {
+          // Сохранить новый токен в localStorage
+          localStorage.setItem('token', newToken);
+          // Повторить загрузку резюме с новым токеном
+          this.loadResume();
+        },
+          refreshTokenError => {
+            console.error('Ошибка при обновлении токена:', refreshTokenError);
+            // Обработать ошибку обновления токена (например, выход из приложения)
+          });
     }
   }
 
