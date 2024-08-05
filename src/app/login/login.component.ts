@@ -1,43 +1,46 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ResumeService } from '../resume.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
-
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  styleUrl: 'login.component.scss',
+  styleUrls: ['login.component.scss'],
   template: `
-<div class="user-is-login" >User: 
-       <div class="flex-horizon" *ngIf="isUser(); else offUser">
-         <span class="user-login-on" >Is online</span>
-         <button (click)="logOutForLogin()">LogOut </button> 
-       </div>
-        <ng-template  #offUser>
-           <span class="user-login-off">Offline.</span>
-        </ng-template>
-  </div>
-    <form *ngIf="!isUser()" (ngSubmit)="onSubmit()">     
-        <div class="user-field">
-            <label for="username">Username: </label>
-            <input [(ngModel)]="username" name="username" placeholder="Username" required>
+    <div class="container-login">
+        <div class="user-status flex-horizontal">
+          User:
+          <div class="flex-horizontal" *ngIf="isUser(); else offUser">
+            <span class="user-online">Is online</span>
+            <button (click)="logOut()">Log Out</button>
+          </div>
+          <ng-template #offUser>
+            <span class="user-offline">Offline</span>
+          </ng-template>
+        </div>
+
+        <form class="user-form" *ngIf="!isUser()" (ngSubmit)="onSubmit()">
+          <div class="user-field">
+            <label for="username">Username:</label>
+            <input [(ngModel)]="username" name="username" id="username" placeholder="Username" required>
           </div>
           <div class="user-field">
             <label for="password">Password:</label>
-            <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
+            <input [(ngModel)]="password" name="password" id="password" type="password" placeholder="Password" required>
           </div>
-          <button type="submit">LogIn</button>
-    </form>
+          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+          <button class="btn-primary-pf" type="submit">Log In</button>
+        </form>
+    </div>
   `
 })
 export class LoginComponent {
   username: string = '';
   password: string = '';
-
+  errorMessage: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -49,17 +52,17 @@ export class LoginComponent {
       },
       error => {
         console.error('Login failed', error);
-        // Здесь можно добавить обработку ошибки, например, показать сообщение пользователю
+        this.errorMessage = 'Login failed. Please check your credentials and try again.';
       }
     );
   }
 
-  logOutForLogin() {
+  logOut() {
     this.authService.logOut();
     this.router.navigate(['/app-home']);
   }
 
   isUser() {
-    return this.authService.isLoggedIn() ? true : false;
+    return this.authService.isLoggedIn();
   }
 }
