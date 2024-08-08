@@ -1,4 +1,13 @@
+ @use './_variables' as v; 
+ @use './_colors' as c; 
+
 .btn-primary-pf {
+    padding:  (v.$p-1rem - 0.5) v.$p-1rem;
     border-radius: 4px;
-    background-color: var(--pill-accent);
+    background: #bddbfa linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+    cursor: pointer;
+    transition: all .4s ease-in-out;    
+    &:hover {
+        background: linear-gradient(to top, #bddbfa 5%, var(--pill-accent) 100%);  
+        }
 }

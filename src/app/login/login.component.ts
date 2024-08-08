@@ -9,33 +9,7 @@ import { AuthService } from '../auth.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   styleUrls: ['login.component.scss'],
-  template: `
-    <div class="container-login">
-        <div class="user-status flex-horizontal">
-          User:
-          <div class="flex-horizontal" *ngIf="isUser(); else offUser">
-            <span class="user-online">Is online</span>
-            <button (click)="logOut()">Log Out</button>
-          </div>
-          <ng-template #offUser>
-            <span class="user-offline">Offline</span>
-          </ng-template>
-        </div>
-
-        <form class="user-form" *ngIf="!isUser()" (ngSubmit)="onSubmit()">
-          <div class="user-field">
-            <label for="username">Username:</label>
-            <input [(ngModel)]="username" name="username" id="username" placeholder="Username" required>
-          </div>
-          <div class="user-field">
-            <label for="password">Password:</label>
-            <input [(ngModel)]="password" name="password" id="password" type="password" placeholder="Password" required>
-          </div>
-          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-          <button class="btn-primary-pf" type="submit">Log In</button>
-        </form>
-    </div>
-  `
+  templateUrl: 'login.component.html',
 })
 export class LoginComponent {
   username: string = '';
