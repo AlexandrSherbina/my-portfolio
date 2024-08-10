@@ -3,11 +3,15 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
+import { OverviewComponent } from '../overview/overview.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,
+    AdminDashboardComponent
+  ],
   styleUrls: ['login.component.scss'],
   templateUrl: 'login.component.html',
 })
