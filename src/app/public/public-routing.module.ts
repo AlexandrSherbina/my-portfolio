@@ -12,7 +12,10 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 const routes: Routes = [
   { path: 'app-about', component: AboutComponent },
   { path: 'app-home', component: HomeComponent },
-  { path: 'app-resume', component: ResumeComponent, canActivate: [AuthGuard] },
+  {
+    path: 'app-resume', component: ResumeComponent,
+    canActivate: [AuthGuard]
+  },
   { path: 'app-all-portfolio', component: AllPortfolioComponent },
   { path: 'app-contacts', component: ContactsComponent },
   { path: 'app-login', component: LoginComponent },

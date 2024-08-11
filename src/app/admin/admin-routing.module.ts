@@ -6,15 +6,13 @@ import { OverviewComponent } from '../overview/overview.component';
 import { UsersComponent } from '../users/users.component';
 import { SettingsComponent } from '../settings/settings.component';
 
-
-
 const routes: Routes = [
   {
     path: '',
     component: AdminDashboardComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'app-login', pathMatch: 'full' },
+      { path: '', redirectTo: 'app-overview', pathMatch: 'full' },
       { path: 'app-overview', component: OverviewComponent },
       { path: 'app-users', component: UsersComponent },
       { path: 'app-settings', component: SettingsComponent },

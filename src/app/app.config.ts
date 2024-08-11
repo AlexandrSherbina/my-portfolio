@@ -1,22 +1,18 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AuthGuard } from './auth.guard';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
-  providers:
-    [
-      provideZoneChangeDetection({ eventCoalescing: true }),
-      provideHttpClient(),
-      importProvidersFrom(FormsModule),
-      provideRouter(routes),
-      provideClientHydration(),
-      provideAnimationsAsync(),
-      // AuthGuard,
-    ]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(withFetch()),
+    importProvidersFrom(FormsModule),
+    provideRouter(routes),
+    provideClientHydration(),
+    provideAnimationsAsync()
+  ]
 };
