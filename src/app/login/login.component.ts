@@ -26,7 +26,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(
       response => {
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/app-resume']);
+        this.router.navigate(['/admin']);
       },
       error => {
         console.error('Login failed', error);

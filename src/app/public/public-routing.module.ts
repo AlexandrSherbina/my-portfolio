@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'app-all-portfolio', component: AllPortfolioComponent },
   { path: 'app-contacts', component: ContactsComponent },
   { path: 'app-login', component: LoginComponent },
-  { path: '**', component: PageNotFoundComponent }
+
 ];
 
 
