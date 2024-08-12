@@ -3,15 +3,11 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
-import { OverviewComponent } from '../overview/overview.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule,
-    AdminDashboardComponent
-  ],
+  imports: [CommonModule, FormsModule],
   styleUrls: ['login.component.scss'],
   templateUrl: 'login.component.html',
 })
@@ -21,6 +17,11 @@ export class LoginComponent {
   errorMessage: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) { }
+  isPopupOpen = false;
+
+  togglePopup() {
+    this.isPopupOpen = !this.isPopupOpen;
+  }
 
   onSubmit() {
     this.authService.login(this.username, this.password).subscribe(

@@ -1,21 +1,34 @@
-<div class="container-admin" *ngIf="isUser(); else loginForm">
-    <h2 class="user-offline">adminPanel</h2>
-    <button class="btn-primary-pf" (click)="logOut()">Log Out</button>
-</div>
-<ng-template #loginForm>
-    <div class="container-login">
-        <form class="user-form" (ngSubmit)="onSubmit()">
-            <div class="user-field">
-                <label for="username">Username:</label>
-                <input [(ngModel)]="username" name="username" id="username" placeholder="Username" required>
+<!-- Кнопка для открытия popup -->
+<button class="btn-primary-pf" (click)="togglePopup()">Login</button>
+
+<!-- Popup окно -->
+<div class="popup" *ngIf="isPopupOpen">
+    <div class="popup-content">
+        <span class="close" (click)="togglePopup()">&times;</span>
+        <h2>Login</h2>
+        <form>
+            <!-- Ваша форма логина -->
+            <div class="container-admin" *ngIf="isUser(); else loginForm">
+                <h2 class="user-offline">adminPanel</h2>
+                <button class="btn-primary-pf" (click)="logOut()">Log Out</button>
             </div>
-            <div class="user-field">
-                <label for="password">Password:</label>
-                <input [(ngModel)]="password" name="password" id="password" type="password" placeholder="Password"
-                    required>
-            </div>
-            <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-            <button class="btn-primary-pf" type="submit">Log In</button>
+            <ng-template #loginForm>
+                <div class="container-login">
+                    <form class="user-form" (ngSubmit)="onSubmit()">
+                        <div class="user-field">
+                            <label for="username">Username:</label>
+                            <input [(ngModel)]="username" name="username" id="username" placeholder="Username" required>
+                        </div>
+                        <div class="user-field">
+                            <label for="password">Password:</label>
+                            <input [(ngModel)]="password" name="password" id="password" type="password"
+                                placeholder="Password" required>
+                        </div>
+                        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+                        <button class="btn-primary-pf" type="submit">Log In</button>
+                    </form>
+                </div>
+            </ng-template>
         </form>
     </div>
-</ng-template>
+</div>
