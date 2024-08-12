@@ -7,7 +7,6 @@ import { AuthGuard } from '../auth.guard';
 import { AllPortfolioComponent } from '../all-portfolio/all-portfolio.component';
 import { ContactsComponent } from '../contacts/contacts.component';
 import { LoginComponent } from '../login/login.component';
-import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: 'app-about', component: AboutComponent },
