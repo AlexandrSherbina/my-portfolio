@@ -23,6 +23,12 @@ export class LoginComponent {
     this.isPopupOpen = !this.isPopupOpen;
   }
 
+  onBackgroundClick(event: MouseEvent) {
+    if (this.isPopupOpen) {
+      this.togglePopup();
+    }
+  }
+
   onSubmit() {
     this.authService.login(this.username, this.password).subscribe(
       response => {

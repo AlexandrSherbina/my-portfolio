@@ -84,6 +84,7 @@ $color-user-online: #50cd54;
   }
   
   .popup-content {
+    position:relative;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -96,6 +97,7 @@ $color-user-online: #50cd54;
     top: 10px;
     right: 10px;
     font-size: 24px;
+    color: red;
     cursor: pointer;
   }
   

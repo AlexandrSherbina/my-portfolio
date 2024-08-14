@@ -2,8 +2,8 @@
 <button class="btn-primary-pf" (click)="togglePopup()">Login</button>
 
 <!-- Popup окно -->
-<div class="popup" *ngIf="isPopupOpen">
-    <div class="popup-content">
+<div class="popup" *ngIf="isPopupOpen" (click)="onBackgroundClick($event)">
+    <div class="popup-content" (click)="$event.stopPropagation()">
         <span class="close" (click)="togglePopup()">&times;</span>
         <h2>Login</h2>
         <form>
