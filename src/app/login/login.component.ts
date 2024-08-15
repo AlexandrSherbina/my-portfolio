@@ -17,13 +17,13 @@ export class LoginComponent {
   errorMessage: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) { }
-  isPopupOpen = false;
+  public isPopupOpen = false;
 
-  togglePopup() {
+  public togglePopup() {
     this.isPopupOpen = !this.isPopupOpen;
   }
 
-  onBackgroundClick(event: MouseEvent) {
+  public onBackgroundClick(event: MouseEvent) {
     if (this.isPopupOpen) {
       this.togglePopup();
     }

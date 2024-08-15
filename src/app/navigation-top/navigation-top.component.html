@@ -1,13 +1,21 @@
-<nav>
+<nav class="nav-main">
     <ul class="menu-list">
         @for (item of itemNavigation; track $index) {
         <li class="menu-list-item">
             <a class="button-nav" ariaCurrentWhenActive="page" routerLinkActive="active-button"
                 routerLink={{item.routerLink}}>
-                {{item.nameLink}}</a>
+                {{item.nameLink}}
+            </a>
         </li>
         } @empty {
         <li>There is not items</li>
         }
+    </ul>
+    <ul>
+        <li class="menu-list-item">
+            <button class="button-nav" (click)="onAuthorizationClick()">
+                <mat-icon>login</mat-icon> {{adminPanel}}
+            </button>
+        </li>
     </ul>
 </nav>

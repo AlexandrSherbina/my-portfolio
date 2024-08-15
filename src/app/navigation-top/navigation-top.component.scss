@@ -2,17 +2,27 @@
 
 @mixin flexMenu {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap;
 }
 
+.nav-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+ul {
+    list-style-type:none;
+}
 ul.menu-list {
     position: relative;
     @include flexMenu;
     padding: 1rem 0.5rem;
-    list-style-type:none;
 }
 
 li.menu-list-item {
@@ -74,3 +84,8 @@ li.menu-list-item {
     border: 1px solid #84bbf3;    
     @include btn-shadows(#dcecfb, #528ecc)
 }
+
+mat-icon {
+    margin-right: 8px;
+    vertical-align: middle;
+  }

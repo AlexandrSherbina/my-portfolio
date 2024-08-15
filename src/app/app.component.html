@@ -166,7 +166,8 @@
   }
 </style>
 <header>
-  <app-navigation-top></app-navigation-top>
+  <app-navigation-top (openLoginPopup)="openLoginPopup()"></app-navigation-top>
+  <app-login #loginComponent></app-login>
 </header>
 <main>
   <router-outlet></router-outlet>
