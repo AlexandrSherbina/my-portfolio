@@ -34,6 +34,7 @@ export class LoginComponent {
       response => {
         localStorage.setItem('token', response.token);
         this.router.navigate(['/admin']);
+        this.togglePopup();
       },
       error => {
         console.error('Login failed', error);

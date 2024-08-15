@@ -18,11 +18,24 @@ export class NavigationTopComponent {
     { id: 4, nameLink: 'All portfolio', routerLink: 'app-all-portfolio' },
     { id: 5, nameLink: 'Contacts', routerLink: 'app-contacts' },
   ];
-  adminPanel = 'Log In'
+  adminPanelLogIn = 'Log In';
+  adminPanelLogOut = 'Log Out';
+
   @Output() openLoginPopup: EventEmitter<void> = new EventEmitter<void>();
+  @Output() logOutLogin: EventEmitter<void> = new EventEmitter<void>();
+
+  constructor(private loginComponent: LoginComponent) { }
 
   // Эта функция будет вызываться при клике на кнопку
   onAuthorizationClick(): void {
     this.openLoginPopup.emit();
+  }
+
+  unAuthorizationClick(): void {
+    this.logOutLogin.emit();
+  }
+
+  isAdmin(): boolean {
+    return this.loginComponent.isUser();
   }
 }

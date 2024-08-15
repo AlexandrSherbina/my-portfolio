@@ -17,12 +17,15 @@ $color-user-online: #50cd54;
 }
 
 .container-login {
+    @include flexColumn;
     width: 400px;
     padding: ($p-1rem + 0.5) $p-1rem ($p-1rem + 1) $p-1rem ;
     background-color:  var(--gray-400);
     border: $p-1rem var(--gray-700);
     border-radius: 0.3rem;
 }
+
+
 
 .user-status {
     font-size: $font-size;
@@ -38,9 +41,7 @@ $color-user-online: #50cd54;
     color: #6956d1;
 }
 
-.user-form {
-    @include flexColumn;
-}
+
 
 .user-field {
     @include flexColumn($gap: 0.5rem);

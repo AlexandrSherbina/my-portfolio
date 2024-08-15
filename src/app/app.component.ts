@@ -19,4 +19,8 @@ export class AppComponent {
   openLoginPopup() {
     this.loginComponent.togglePopup();
   }
+
+  logOutLogin() {
+    this.loginComponent.logOut();
+  }
 }

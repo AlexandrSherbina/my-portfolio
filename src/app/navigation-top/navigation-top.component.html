@@ -13,9 +13,15 @@
     </ul>
     <ul>
         <li class="menu-list-item">
-            <button class="button-nav" (click)="onAuthorizationClick()">
-                <mat-icon>login</mat-icon> {{adminPanel}}
+            @if(isAdmin()) {
+            <button class="button-nav flex-nowrap-start-center" (click)="unAuthorizationClick()">
+                <mat-icon>logout</mat-icon> {{adminPanelLogOut}}
             </button>
+            } @else {
+            <button class="button-nav flex-nowrap-start-center" (click)="onAuthorizationClick()">
+                <mat-icon>login</mat-icon> {{adminPanelLogIn}}
+            </button>
+            }
         </li>
     </ul>
 </nav>

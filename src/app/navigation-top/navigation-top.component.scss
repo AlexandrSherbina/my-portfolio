@@ -8,6 +8,8 @@
     gap: 0.5rem;
 }
 
+
+
 .nav-main {
     display: flex;
     flex-direction: row;
@@ -76,7 +78,12 @@ li.menu-list-item {
     }
 }
 
-
+.flex-nowrap-start-center {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
 
 .active-button {
     color: $white;
