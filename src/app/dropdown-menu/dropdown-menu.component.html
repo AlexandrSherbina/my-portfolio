@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+    <!-- Кнопка, которая открывает выпадающее меню -->
+    <button mat-icon-button [matMenuTriggerFor]="adminMenu">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+
+    <!-- Определение выпадающего меню -->
+    <mat-menu #adminMenu="matMenu">
+        @if(isAdmin()) {
+        <button mat-menu-item (click)="openAdminPanel()">Admin Panel</button>
+        <button mat-menu-item (click)="unAuthorizationClick()">Log Out</button>
+        } @else {
+        <button mat-menu-item (click)="onAuthorizationClick()">Log In</button>
+        }
+    </mat-menu>
+
+</mat-toolbar>

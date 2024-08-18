@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
-import { MatIconModule } from '@angular/material/icon';
+import { DropdownMenuComponent } from '../dropdown-menu/dropdown-menu.component';
 
 @Component({
   selector: 'app-navigation-top',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, LoginComponent, MatIconModule],
+  imports: [RouterLink, RouterLinkActive, LoginComponent, DropdownMenuComponent],
   templateUrl: './navigation-top.component.html',
   styleUrl: './navigation-top.component.scss'
 })
@@ -18,24 +18,14 @@ export class NavigationTopComponent {
     { id: 4, nameLink: 'All portfolio', routerLink: 'app-all-portfolio' },
     { id: 5, nameLink: 'Contacts', routerLink: 'app-contacts' },
   ];
-  adminPanelLogIn = 'Log In';
-  adminPanelLogOut = 'Log Out';
 
-  @Output() openLoginPopup: EventEmitter<void> = new EventEmitter<void>();
-  @Output() logOutLogin: EventEmitter<void> = new EventEmitter<void>();
+  @ViewChild('loginComponent') loginComponent!: LoginComponent;
 
-  constructor(private loginComponent: LoginComponent) { }
-
-  // Эта функция будет вызываться при клике на кнопку
-  onAuthorizationClick(): void {
-    this.openLoginPopup.emit();
+  openLoginPopup() {
+    this.loginComponent.togglePopup();
   }
 
-  unAuthorizationClick(): void {
-    this.logOutLogin.emit();
-  }
-
-  isAdmin(): boolean {
-    return this.loginComponent.isUser();
+  logOutLogin() {
+    this.loginComponent.logOut();
   }
 }

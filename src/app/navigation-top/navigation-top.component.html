@@ -11,17 +11,8 @@
         <li>There is not items</li>
         }
     </ul>
-    <ul>
-        <li class="menu-list-item">
-            @if(isAdmin()) {
-            <button class="button-nav flex-nowrap-start-center" (click)="unAuthorizationClick()">
-                <mat-icon>logout</mat-icon> {{adminPanelLogOut}}
-            </button>
-            } @else {
-            <button class="button-nav flex-nowrap-start-center" (click)="onAuthorizationClick()">
-                <mat-icon>login</mat-icon> {{adminPanelLogIn}}
-            </button>
-            }
-        </li>
-    </ul>
+    <!-- dropdown menu login, admin -->
+    <app-dropdown-menu (logOutLogin)="logOutLogin()" (openLoginPopup)="openLoginPopup()"></app-dropdown-menu>
 </nav>
+<!-- popup login-->
+<app-login #loginComponent></app-login>
