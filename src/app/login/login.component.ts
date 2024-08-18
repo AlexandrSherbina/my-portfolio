@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string | null = null;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) { }
   public isPopupOpen = false;
 
   public togglePopup() {
@@ -33,6 +34,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(
       response => {
         localStorage.setItem('token', response.token);
+        this.userService.setUserNameLocalStorage(this.username);
         this.router.navigate(['/admin']);
         this.togglePopup();
       },

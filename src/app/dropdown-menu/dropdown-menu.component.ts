@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from '../login/login.component';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-dropdown-menu',
@@ -13,9 +14,10 @@ import { LoginComponent } from '../login/login.component';
   styleUrl: './dropdown-menu.component.scss'
 })
 export class DropdownMenuComponent {
+  username: null | string = null;
   @Output() openLoginPopup: EventEmitter<void> = new EventEmitter<void>();
   @Output() logOutLogin: EventEmitter<void> = new EventEmitter<void>();
-  constructor(private router: Router, private loginComponent: LoginComponent) { }
+  constructor(private router: Router, private loginComponent: LoginComponent, private userService: UserService) { }
 
   openAdminPanel() {
     this.router.navigate(['/admin']);
@@ -30,7 +32,18 @@ export class DropdownMenuComponent {
     this.logOutLogin.emit();
   }
 
+  isUserName() {
+    if (this.isAdmin()) {
+      return this.username = this.userService.getUserNameLocalStorage();
+    } else {
+      return this.username = null;
+    }
+
+  }
+
   isAdmin(): boolean {
     return this.loginComponent.isUser();
   }
+
+
 }

@@ -1,3 +1,10 @@
+.toggle-btn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
 mat-menu {
     mat-menu-item {
       font-weight: bold;
