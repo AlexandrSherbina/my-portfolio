@@ -5,6 +5,7 @@ import { SafeHtmlPipe } from '../safe-html.pipe';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-resume',
@@ -18,7 +19,9 @@ export class ResumeComponent implements OnInit {
   isEditing: boolean = false;
   isAdmin: boolean = false;
 
-  constructor(private resumeService: ResumeService, private router: Router) { }
+  constructor(private resumeService: ResumeService, private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.loadResume();
@@ -38,7 +41,7 @@ export class ResumeComponent implements OnInit {
   }
 
   checkAdminStatus() {
-    const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
+    const token = this.authService.getToken();
     if (token) {
       const tokenParts = token.split('.');
       if (tokenParts.length !== 3) {

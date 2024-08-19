@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ResumeService {
   private apiUrl = 'http://localhost:3000/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getResume(): Observable<string> {
     return this.http.get(`${this.apiUrl}/resume`, {
@@ -31,7 +32,7 @@ export class ResumeService {
   }
 
   private getAuthHeaders(): HttpHeaders {
-    const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
+    const token = this.authService.getToken();
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 }

@@ -44,6 +44,4 @@ export class DropdownMenuComponent {
   isAdmin(): boolean {
     return this.loginComponent.isUser();
   }
-
-
 }
