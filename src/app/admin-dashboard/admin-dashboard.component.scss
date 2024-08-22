@@ -11,7 +11,7 @@
       padding: 0;
     }
     
-    .custom-nav-item {
+    ng-deep .custom-nav-item {
       color: #fff;
       &:hover {
         // background-color: #444; /* Цвет при наведении */
