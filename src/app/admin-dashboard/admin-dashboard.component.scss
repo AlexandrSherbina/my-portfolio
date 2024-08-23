@@ -6,15 +6,15 @@
   background-color: #f5f5f5; /* Пример цвета фона */
   .custom-sidenav {
     width: 250px;
-    // background-color: #333; /* Темный цвет для бокового меню */
+    background-color: #333; /* Темный цвет для бокового меню */
     .custom-nav-list {
       padding: 0;
     }
     
-    ng-deep .custom-nav-item {
+    .custom-nav-item {
       color: #fff;
       &:hover {
-        // background-color: #444; /* Цвет при наведении */
+        background-color: #444; /* Цвет при наведении */
       }
     }
   }
