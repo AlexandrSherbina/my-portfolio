@@ -8,36 +8,6 @@
     gap: 0.5rem;
 }
 
-
-
-.nav-main {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-ul {
-    list-style-type:none;
-}
-ul.menu-list {
-    position: relative;
-    @include flexMenu;
-    padding: 1rem 0.5rem;
-}
-
-li.menu-list-item {
-    &:not(:nth-last-child(-n + 1))::after {
-        content: '|' ;
-        position: relative;
-        right: -10px;
-        margin-right: 0.5rem;
-        color: $dark-gray;
-        font-weight: 600;
-    }
-}
-
 @mixin btnPrimaryFonts {
     font-family: Arial, sans-serif;
     font-size: 1rem;
@@ -59,40 +29,78 @@ li.menu-list-item {
     box-shadow: inset 0 1px 0 0 $box-sh-cr;
     text-shadow: 0 1px 0 $text-sh-cr;
 }
+@layer parent, children;
 
+@layer parent {
+    .nav-main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
 
-.button-nav {
-    display: inline-block;
-    position: relative;
-    padding: 6px 24px;
-    @include btnPrimaryFonts;
-    @include btn-primary-colors;
-    @include btnPrimaryBorders;
-    @include btn-shadows($white, $white);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all .3s ease-in-out;
-    &:not(.active-button):hover {
-        background: linear-gradient(to top, #dcdcdc 20%, $white 100%);
-        color: saturate( black, 15%);
+    .menu-list {
+        list-style-type:none;
+        position: relative;
+        @include flexMenu;
+        padding: 1rem 0.5rem;
+    }
+}
+@layer children {
+    .menu-list-item {
+        &:not(:nth-last-child(-n + 1))::after {
+            content: '|' ;
+            position: relative;
+            right: -10px;
+            margin-right: 0.5rem;
+            color: $dark-gray;
+            font-weight: 600;
+        }
+    }
+        
+    .button-nav {
+        display: inline-block;
+        position: relative;
+        padding: 6px 24px;
+        @include btnPrimaryFonts;
+        @include btn-primary-colors;
+        @include btnPrimaryBorders;
+        @include btn-shadows($white, $white);
+        text-decoration: none;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        &:not(.active-button):hover {
+            background: linear-gradient(to top, #dcdcdc 20%, $white 100%);
+            color: saturate( black, 15%);
+        }
+    }
+    
+    .flex-nowrap-start-center {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .active-button {
+        color: $white;
+        background: #bddbfa linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+        border: 1px solid #84bbf3;    
+        @include btn-shadows(#dcecfb, #528ecc)
     }
 }
 
-.flex-nowrap-start-center {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-}
 
-.active-button {
-    color: $white;
-    background: #bddbfa linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
-    border: 1px solid #84bbf3;    
-    @include btn-shadows(#dcecfb, #528ecc)
-}
 
-mat-icon {
-    margin-right: 8px;
-    vertical-align: middle;
-  }
+
+
+
+
+
+
+
+// mat-icon {
+//     margin-right: 8px;
+//     vertical-align: middle;
+//   }
